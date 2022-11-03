@@ -1,2 +1,6 @@
-src/ipvgather.log
-src/lib/__pycache__
+# Ignore generated log files
+/src/ipvgather.log
+
+# Ignore py caches
+/src/lib/__pycache__/
+/src/__pycache__/
