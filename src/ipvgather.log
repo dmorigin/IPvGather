@@ -1,0 +1,86 @@
+Nov 02 23:33:04,747 root INFO: Worker::thread: Connect to end points
+Nov 02 23:33:04,765 root INFO: InfluxDB::connect(): connection initiated
+Nov 02 23:33:05,131 root INFO: Inverter::connect(): Connected
+Nov 02 23:33:05,131 root INFO: Inverter::connect(): Identified
+Nov 02 23:33:05,131 root INFO:      - Model: GW8K-ET
+Nov 02 23:33:05,132 root INFO:      - SerialNr: 98000ETU226W0318
+Nov 02 23:33:05,132 root INFO:      - Version: 04029-08-S11
+Nov 02 23:33:05,133 root INFO: Worker::thread: Start update data
+Nov 02 23:34:35,907 root INFO: ipvgather.statistics: Avg Sec/Update: 1.815464882850647s / 50 updates in 90.77324414253235s
+Nov 02 23:36:03,683 root INFO: ipvgather.statistics: Avg Sec/Update: 1.755532102584839s / 50 updates in 87.77660512924194s
+Nov 02 23:37:33,364 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7936085414886476s / 50 updates in 89.68042707443237s
+Nov 02 23:39:03,43 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7935814237594605s / 50 updates in 89.67907118797302s
+Nov 02 23:40:28,863 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7163997602462768s / 50 updates in 85.81998801231384s
+Nov 02 23:41:54,690 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7165459871292115s / 50 updates in 85.82729935646057s
+Nov 02 23:42:48,267 root INFO: Signal Handler: Stop worker
+Nov 02 23:42:48,861 root INFO: Worker::thread: Disconnect from end points
+Nov 02 23:42:48,862 root INFO: InfluxDB::close(): connection closed
+Nov 02 23:42:48,862 root INFO: Inverter::close(): Disconnected
+Nov 02 23:42:52 root INFO: Worker::thread: Connect to end points
+Nov 02 23:42:52 root INFO: InfluxDB::connect(): connection initiated
+Nov 02 23:42:52 root INFO: Inverter::connect(): Connected
+Nov 02 23:42:52 root INFO: Inverter::connect(): Identified
+Nov 02 23:42:52 root INFO:      - Model: GW8K-ET
+Nov 02 23:42:52 root INFO:      - SerialNr: 98000ETU226W0318
+Nov 02 23:42:52 root INFO:      - Version: 04029-08-S11
+Nov 02 23:42:52 root INFO: Worker::thread: Start update data
+Nov 02 23:52:55 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7953032099065327s / 336 updates in 603.221878528595s
+Nov 03 00:02:57 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7549614642173834s / 343 updates in 601.9517822265625s
+Nov 03 00:12:59 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7957270771709841s / 335 updates in 601.5685708522797s
+Nov 03 00:23:01 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7799705690180763s / 338 updates in 601.6300523281097s
+Nov 03 00:33:02 root INFO: ipvgather.statistics: Avg Sec/Update: 1.801371622942165s / 334 updates in 601.6581220626831s
+Nov 03 00:43:02 root INFO: ipvgather.statistics: Avg Sec/Update: 1.796911457341588s / 334 updates in 600.1684267520905s
+Nov 03 00:53:03 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7518293155525586s / 343 updates in 600.8774552345276s
+Nov 03 01:03:05 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8171381748695028s / 331 updates in 601.4727358818054s
+Nov 03 01:13:07 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8371523684117852s / 328 updates in 602.5859768390656s
+Nov 03 01:23:08 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7814236932409269s / 337 updates in 600.3397846221924s
+Nov 03 01:33:08 root INFO: ipvgather.statistics: Avg Sec/Update: 1.847698527116042s / 325 updates in 600.5020213127136s
+Nov 03 01:43:09 root INFO: ipvgather.statistics: Avg Sec/Update: 1.808392423463155s / 332 updates in 600.3862845897675s
+Nov 03 01:53:10 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7891907770009268s / 336 updates in 601.1681010723114s
+Nov 03 02:03:11 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7626320462772225s / 341 updates in 601.0575277805328s
+Nov 03 02:13:11 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7721199131293284s / 339 updates in 600.7486505508423s
+Nov 03 02:23:13 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8105654917567608s / 332 updates in 601.1077432632446s
+Nov 03 02:33:14 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7838355893551066s / 337 updates in 601.1525936126709s
+Nov 03 02:43:15 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7773921694275896s / 338 updates in 600.7585532665253s
+Nov 03 02:53:15 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7938297492354665s / 335 updates in 600.9329659938812s
+Nov 03 03:03:17 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7906496702205568s / 336 updates in 601.658289194107s
+Nov 03 03:13:17 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7652156647513895s / 340 updates in 600.1733260154724s
+Nov 03 03:23:19 root INFO: ipvgather.statistics: Avg Sec/Update: 1.81661106092332s / 331 updates in 601.2982611656189s
+Nov 03 03:33:20 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7693328114116893s / 340 updates in 601.5731558799744s
+Nov 03 03:43:21 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7932322317094944s / 335 updates in 600.7327976226807s
+Nov 03 03:53:22 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7634245377481859s / 341 updates in 601.3277673721313s
+Nov 03 04:03:23 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7468566381654074s / 344 updates in 600.9186835289001s
+Nov 03 04:13:24 root INFO: ipvgather.statistics: Avg Sec/Update: 1.788829546599161s / 336 updates in 601.0467276573181s
+Nov 03 04:23:25 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7224729778431889s / 349 updates in 601.143069267273s
+Nov 03 04:33:26 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7365833706938463s / 346 updates in 600.8578462600708s
+Nov 03 04:43:27 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8001903295516968s / 334 updates in 601.2635700702667s
+Nov 03 04:53:29 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7489929268526476s / 344 updates in 601.6535668373108s
+Nov 03 05:03:29 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8028624730783183s / 333 updates in 600.35320353508s
+Nov 03 05:13:31 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7787108329626231s / 338 updates in 601.2042615413666s
+Nov 03 05:23:32 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8382912535186207s / 327 updates in 601.121239900589s
+Nov 03 05:33:32 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7985437308956762s / 334 updates in 600.7136061191559s
+Nov 03 05:43:33 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7668761288418489s / 340 updates in 600.7378838062286s
+Nov 03 05:53:34 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8272143250903097s / 329 updates in 601.1535129547119s
+Nov 03 06:03:36 root INFO: ipvgather.statistics: Avg Sec/Update: 1.845269089096163s / 326 updates in 601.5577230453491s
+Nov 03 06:13:37 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7588113720654046s / 342 updates in 601.5134892463684s
+Nov 03 06:23:38 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8477730127481313s / 325 updates in 600.5262291431427s
+Nov 03 06:33:39 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7776291151723917s / 338 updates in 600.8386409282684s
+Nov 03 06:43:40 root INFO: ipvgather.statistics: Avg Sec/Update: 1.752446761284208s / 343 updates in 601.0892391204834s
+Nov 03 06:53:41 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7783472446294932s / 338 updates in 601.0813686847687s
+Nov 03 07:03:42 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7829311898624862s / 337 updates in 600.8478109836578s
+Nov 03 07:13:43 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7526206045734638s / 343 updates in 601.1488673686981s
+Nov 03 07:23:44 root INFO: ipvgather.statistics: Avg Sec/Update: 1.717636799131121s / 350 updates in 601.1728796958923s
+Nov 03 07:33:45 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7782781053576948s / 338 updates in 601.0579996109009s
+Nov 03 07:43:47 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7968894816156644s / 335 updates in 601.9579763412476s
+Nov 03 07:53:47 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7761223429053492s / 338 updates in 600.329351902008s
+Nov 03 08:03:48 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7460823052151258s / 344 updates in 600.6523129940033s
+Nov 03 08:13:49 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7781165591358432s / 338 updates in 601.003396987915s
+Nov 03 08:23:50 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7891445152816319s / 336 updates in 601.1525571346283s
+Nov 03 08:33:52 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7430219975070678s / 345 updates in 601.3425891399384s
+Nov 03 08:43:53 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7473519194957823s / 344 updates in 601.0890603065491s
+Nov 03 08:53:54 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7571445766248202s / 342 updates in 600.9434452056885s
+Nov 03 09:03:54 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7815242287666933s / 337 updates in 600.3736650943756s
+Nov 03 09:13:55 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7611922287871062s / 341 updates in 600.5665500164032s
+Nov 03 09:23:55 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8188924204219472s / 330 updates in 600.2344987392426s
+Nov 03 09:33:56 root INFO: ipvgather.statistics: Avg Sec/Update: 1.788315305397624s / 336 updates in 600.8739426136017s
+Nov 03 09:43:57 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7630903888657645s / 341 updates in 601.2138226032257s
