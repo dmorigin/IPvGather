@@ -8,7 +8,7 @@ Group=ipvgather
 ExecStart=python3 /opt/IPvGather/src/ipvgather.py
 KillMode=control-group
 Restart=always
-PIDFile=/var/run/ipvgather.pid
+PIDFile=/run/ipvgather.pid
 
 [Install]
 WantedBy=multi-user.target
