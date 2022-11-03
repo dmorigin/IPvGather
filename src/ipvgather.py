@@ -50,7 +50,7 @@ if args.discover == True:
 Load configuration
 """
 config_file = "/etc/ipvgather.json"
-if args.c != "":
+if getattr(args, "c") != None and args.c != "":
     config_file = args.c
 
 config = read_config(config_file, args.check)

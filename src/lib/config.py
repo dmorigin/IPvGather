@@ -1,6 +1,7 @@
 
 import json
 import io
+import traceback
 from typing import Dict
 
 from .option import Option, none, some
@@ -174,8 +175,8 @@ def read(file: str, probe: bool = False) -> Option:
         #return some(Config(influxdb, inverter, logging, worker))
         return some(config)
 
-    except Exception as err:
-        print(err.with_traceback())
+    except Exception as exc:
+        traceback.print_exception(type(exc), exc, exc.__traceback__)
         return none()
 # // read(file: str) -> Option
 
