@@ -1,0 +1,8 @@
+Dependencies
+    - GoodWe
+    - Influxdb2
+
+    Install using pip
+
+    pip install goodwe
+    pip install influxdb-client
