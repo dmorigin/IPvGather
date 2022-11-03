@@ -84,3 +84,5 @@ Nov 03 09:13:55 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7611922287871
 Nov 03 09:23:55 root INFO: ipvgather.statistics: Avg Sec/Update: 1.8188924204219472s / 330 updates in 600.2344987392426s
 Nov 03 09:33:56 root INFO: ipvgather.statistics: Avg Sec/Update: 1.788315305397624s / 336 updates in 600.8739426136017s
 Nov 03 09:43:57 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7630903888657645s / 341 updates in 601.2138226032257s
+Nov 03 09:53:58 root INFO: ipvgather.statistics: Avg Sec/Update: 1.742443985869919s / 345 updates in 601.1431751251221s
+Nov 03 10:03:59 root INFO: ipvgather.statistics: Avg Sec/Update: 1.7731692572962219s / 339 updates in 601.1043782234192s
