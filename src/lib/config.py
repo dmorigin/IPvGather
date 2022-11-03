@@ -57,7 +57,11 @@ class ConfigInverter:
         self.sensors = ConfigInverterSensors(items.get("sensors", dict()))
 
         for key, value in items.items():
-            if key != "sensors":
+            if key == "family" and (value == "" or value == "none"):
+                self.family = None
+            elif key == "comm_addr" and (value == "" or value == "none"):
+                self.comm_addr = None
+            elif key != "sensors":
                 self.__setattr__(key, value)
 
     def __str__(self) -> str:
@@ -73,10 +77,11 @@ Setup logging
  :syslog    Set value to True to use syslog for logging. Default is false
  :file      If you don't use syslog, a log file must be given.
  :level     A numeric value to setup log level
-            0 - Infos
+            0 - Infos ( Default )
             1 - Warnings
-            2 - Errors ( Default )
-            3 - Debug
+            2 - Errors
+            3 - Critical
+            >3- Debug
 """
 class ConfigLogging:
     syslog: bool
@@ -86,7 +91,7 @@ class ConfigLogging:
     def __init__(self, items: Dict) -> None:
         self.syslog = False
         self.file = "/var/log/ipvgather.log"
-        self.level = 2
+        self.level = 0
     
         for key, value in items.items():
             self.__setattr__(key, value)

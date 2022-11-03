@@ -8,7 +8,7 @@
 	"inverter": {
 		"ip": "192.168.1.55",
 		"family": "ET",
-		"comm_addr": "0xf7",
+		"comm_addr": "",
 		"timeout": 2,
 		"retries": 3,
 		"sensors": {

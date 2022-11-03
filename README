@@ -1,4 +1,7 @@
-Dependencies
+This python script reads out all sensor data from a GoodWe inverter and put them
+into a InfluxDB2 database.
+
+# Dependencies
     - GoodWe
     - Influxdb2
 
@@ -6,3 +9,77 @@ Dependencies
 
     pip install goodwe
     pip install influxdb-client
+
+# Run this script
+
+    python ipvgather.py -c [file.json]
+
+# Script Parameters
+
+    -c [file]   Path and filename of the configuration file
+    --check     Use this additionally to check the your configuration file
+    --disvocer  With this flag, ipvgather will search for an GoodWe inverter
+
+# Configuration file
+
+    The configuration file is formatted in JSON. An example can be found
+    in 'src/config.json'. To use your own configuration file use the '-c'
+    option to set a specific configuration file. Otherwise '/etc/ipvgather.json'
+    will be used as default.
+
+# Recommendations
+
+    There are different families of the GoodWe inverters. You have to setup the series
+    inside the configuration file as 'family'. The following families are valid:
+
+        ET, EH, EM, NS, XS, BP
+
+    If you leave this value empty or set it to 'none' the system try to discover
+    the family automatically. It is recommended to set this value to one of the
+    valid values.
+
+    Next part is the 'Comm Address'. Defined in comm_addr inside the config file. Use one
+    of the following values
+
+        0xf7 -> for ET/EH Family
+        0x7f -> for DT/D-NS/XS Family
+
+    If you leave this value empty or set it to 'none' the system try to detect the
+    Comm Address automatically. Auto detection works in the most cases. So, set this
+    to 'none'.
+
+# First Run
+
+    If you run this script for the first time, please do a discover first. Except you
+    know exactly all data of your GoodWe inverter.
+
+    Run: python ipvgather.py --discover
+
+    Example output:
+
+    Identified inverter
+    - Model: GW8K-ET
+    - SerialNr: 12345ETU226W1234
+    - Version: 04029-08-S11
+    - IP: 192.168.1.23
+    - MAC: AAAABBBBCCCC
+    - Name: Solar-WiFi226W1234
+
+    Now, setup your configuration file and start this script normaly.
+
+    Run: python ipvgather.py -c your_config.json
+
+# Logging
+
+    This script log some data. The default log file is '/var/log/ipvgather.log'.
+    In some cases this can be lead into a 'permission denied' error, if you run
+    this script not as 'root'. It's not recommended to run this script as 'root'.
+
+    If you has some trouble, use the log level for more informations:
+
+    0 - Infos ( Default )
+    1 - Warnings
+    2 - Errors
+    3 - Critical
+    >3- Debug
+
