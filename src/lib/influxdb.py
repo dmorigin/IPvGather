@@ -55,7 +55,7 @@ class InfluxDB:
     """
     def connect(self) -> None:
         self.client = InfluxDBClient(url=self.config.url, token=self.config.token, org=self.config.organisation)
-        self.writer = self.client.write_api()
+        self.writer = self.client.write_api(write_options=SYNCHRONOUS)
         log.info("InfluxDB::connect(): connection initiated")
     # // connect(self) -> None
 

@@ -1,0 +1,14 @@
+[Unit]
+Description=IPvGather Service
+After=influxdb.service
+
+[Service]
+User=ipvgather
+Group=ipvgather
+ExecStart=python3 /opt/IPvGather/src/ipvgather.py
+KillMode=control-group
+Restart=always
+PIDFile=/var/run/ipvgather.pid
+
+[Install]
+WantedBy=multi-user.target
