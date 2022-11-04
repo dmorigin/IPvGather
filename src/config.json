@@ -3,7 +3,9 @@
 		"url": "http://localhost:8086/",
 		"token": "n5khNcIyWcExPZHxE2cd-F8qd4_jBxRSraBCLuF2ZVmWTFvwrOZTRdEmWj-pnUKvlKGU5K-EJXUOcCLdWbwQsw==",
 		"organisation": "Private Test",
-		"bucket": "goodwe"
+		"bucket": "goodwe",
+		"force_write": 10,
+		"use_cache": true
 	},
 	"inverter": {
 		"ip": "192.168.1.55",
@@ -19,10 +21,10 @@
 	"logging": {
 		"syslog": false,
 		"file": "ipvgather.log",
-		"level": 0
+		"level": 4
 	},
 	"worker": {
-		"intervall": 1,
+		"intervall": 2,
 		"err_pause": 10
 	}
 }

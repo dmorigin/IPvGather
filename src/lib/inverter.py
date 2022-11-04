@@ -1,7 +1,8 @@
 
 from .config import ConfigInverter
 from .option import Option, none, some
-from .sensors import get as get_sensor_list
+from .sensors import get as get_sensor_list, Sensor
+from typing import List
 
 import lib.log as log
 import goodwe
@@ -24,42 +25,42 @@ class DeviceInfo:
 """
 class Inverter:
     def __init__(self, config: ConfigInverter) -> None:
-        self.config = config
-        self.inverter = None
-        self.deviceinfo = None
-        self.sensor_map = ()
+        self._config = config
+        self._inverter = None
+        self._deviceinfo = None
+        self._sensors = List[Sensor]
 
     """
     Connect to Goodwe Inverter
     """
     def connect(self) -> bool:
         try:
-            self.inverter = asyncio.run(goodwe.connect(
-                self.config.ip,
-                self.config.comm_addr,
-                self.config.family,
-                self.config.timeout,
-                self.config.retries))
+            self._inverter = asyncio.run(goodwe.connect(
+                self._config.ip,
+                self._config.comm_addr,
+                self._config.family,
+                self._config.timeout,
+                self._config.retries))
 
-            log.info("Inverter::connect(): Connected")
-            log.info("Inverter::connect(): Identified")
-            log.info(f"     - Model: {self.inverter.model_name}")
-            log.info(f"     - SerialNr: {self.inverter.serial_number}")
-            log.info(f"     - Version: {self.inverter.software_version}")
+            log.info("inverter.connect: Connected")
+            log.info("inverter.connect: Identified")
+            log.info(f"     - Model: {self._inverter.model_name}")
+            log.info(f"     - SerialNr: {self._inverter.serial_number}")
+            log.info(f"     - Version: {self._inverter.software_version}")
 
             # Build device info
-            self.deviceinfo = DeviceInfo(self.inverter)
+            self._deviceinfo = DeviceInfo(self._inverter)
 
             # Generate sensor list
-            self.sensor_map = get_sensor_list(
-                self.inverter.sensors(),
-                self.config.sensors.add,
-                self.config.sensors.ignore
+            self._sensors = get_sensor_list(
+                self._inverter.sensors(),
+                self._config.sensors.add,
+                self._config.sensors.ignore
             )
 
             return True
         except goodwe.InverterError as err:
-            log.error("Inverter::connect(): Cannot connect to inverter")
+            log.error("inverter.connect: Cannot connect to inverter")
             log.error(err)
             return False
     # // connect(config: config.ConfigInverter)
@@ -68,9 +69,9 @@ class Inverter:
     """
     """
     def close(self) -> None:
-        self.inverter = None
-        self.sensor_map = tuple()
-        log.info("Inverter::close(): Disconnected")
+        self._inverter = None
+        self._sensors = tuple()
+        log.info("inverter.close: Disconnected")
     # // close(self) -> None
 
 
@@ -78,10 +79,10 @@ class Inverter:
     """
     def update(self) -> Option:
         try:
-            if self.inverter != None:
-                return some(asyncio.run(self.inverter.read_runtime_data()))
+            if self._inverter != None:
+                return some(asyncio.run(self._inverter.read_runtime_data()))
             else:
-                log.error("Inverter::update(): No inverter connected")
+                log.error("inverter.update: No inverter connected")
                 return none()
         except goodwe.RequestFailedException as err:
             log.error(err)
@@ -95,15 +96,15 @@ class Inverter:
     """
     """
     def sensors(self) -> Option:
-        return some(self.sensor_map)
+        return some(self._sensors)
     # // sensors(self) -> Option
 
 
     """
     """
     def device_info(self) -> Option:
-        if isinstance(self.inverter, goodwe.Inverter) == True:
-            return some(self.deviceinfo)
+        if isinstance(self._inverter, goodwe.Inverter):
+            return some(self._deviceinfo)
         return none()
 
 # // class Inverter
@@ -119,7 +120,7 @@ def discover() -> None:
 
     # Discover inverter
     inverter = asyncio.run(goodwe.discover(found[0], 8899))
-    if isinstance(inverter, goodwe.Inverter) == True:
+    if isinstance(inverter, goodwe.Inverter):
         print(
             f"Identified inverter\n"
             f"- Model: {inverter.model_name}\n"

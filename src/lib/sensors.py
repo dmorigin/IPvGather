@@ -1,6 +1,6 @@
 
 from typing import List, Any, Tuple
-from goodwe import Sensor
+from goodwe import Sensor as GoodWeSensor, SensorKind
 
 
 """
@@ -8,7 +8,7 @@ This map contains the list of all sensors that will be processed
 by the gatherer. Sensors that are not part of this list are
 ignored.
 """    
-sensor_map = [
+_sensor_map = [
     "timestamp",#, "Timestamp" ], #2022-11-02 19:30:22 
     "vpv1",#PV1 Voltage" ], #0.0 V
     "ipv1",#PV1 Current" ], #0.0 A
@@ -159,7 +159,7 @@ sensor_map = [
 
 """
 """
-ignore_map = [
+_ignore_map = [
     "timestamp",
     "grid_mode",
     "grid_mode_label",
@@ -216,18 +216,48 @@ ignore_map = [
 ]
 
 
-def get(sensors: Tuple[Sensor, ...], append: List, ignore: List) -> Any:
-    global sensor_map, ignore_map
+"""
+"""
+class Sensor:
+    def __init__(self, sensor: GoodWeSensor) -> None:
+        self.id = sensor.id_
+        self.name = sensor.name
+        self.unit = sensor.unit
+        self.kind = sensor.kind
+
+    """
+    Compare other object for the following types
+        - string
+        - Sensor
+        - goodwe.SensorKind
+        - goodwe.Sensor
+    """
+    def __eq__(self, __o: object) -> bool:
+        if isinstance(__o, str):
+            return self.id == __o
+        elif isinstance(__o, Sensor):
+            return self.id == __o.id
+        elif isinstance(__o, SensorKind):
+            return self.kind == __o
+        elif isinstance(__o, GoodWeSensor):
+            return self.id == __o.id_
+        return False
+
+
+def get(sensors: Tuple[GoodWeSensor, ...], append: List, ignore: List) -> List[Sensor]:
+    global _sensor_map, _ignore_map
 
     # Filter sensor_map list
-    result = list(filter(lambda sensor: sensor not in ignore and sensor not in ignore_map, sensor_map))
+    result = list(filter(lambda sensor: sensor not in ignore and sensor not in _ignore_map, _sensor_map))
 
     # Append sensors from "append" list
     result.append(append)
 
-    # Filter sensor list from inverter
-    return tuple(filter(lambda sensor: sensor.id_ in result, sensors))
-
+    # Filter sensor list from inverter and map them to Sensor object
+    return list(map(
+        lambda sensor: Sensor(sensor),
+        filter(lambda sensor: sensor.id_ in result, sensors)
+    ))
 
 
 """

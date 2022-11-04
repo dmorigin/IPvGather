@@ -14,110 +14,118 @@ class Worker:
     by calling Worker::start().
     """
     def __init__(self, config: Config) -> None:
-        self.config = config
-        self.run = True
-        self.inverter = None
-        self.influxdb = None
-        self.thread = threading.Thread(
-            target=self._run,
+        self._config = config
+        self._run = True
+        self._inverter = None
+        self._influxdb = None
+        self._thread = threading.Thread(
+            target=self.run,
             name="IPyGatherWorker",
             daemon=True
         )
-        self.test = 1
 
     # // __init__(self, config: ConfigWorker) -> None
 
     """
     Entry method for the thread. This is the main process.
     """
-    def _run(self) -> None:
+    def run(self) -> None:
 
         """
         Main worker loop. Inside this loop everything will be initalized
         and startet. It calls self::_update_data() that processing the
         update routine.
         """
-        while self.run:
+        while self._run:
 
             try:
-                log.info("Worker::thread: Connect to end points")
-
-                # Connect to influx db
-                self.influxdb = InfluxDB(self.config.influxdb)
-                self.influxdb.connect()
+                log.info("worker.thread: Connect to end points")
 
                 # Connect to inverter
-                self.inverter = Inverter(self.config.inverter)
-                if self.inverter.connect() == True:
-                    log.info("Worker::thread: Start update data")
-                    self._update_data()
+                self._inverter = Inverter(self._config.inverter)
+                if self._inverter.connect():
+                    # Connect to influx db
+                    self._influxdb = InfluxDB(self._config.influxdb)
+                    self._influxdb.connect()
+                    if self._influxdb.build_sensor_cache(self._inverter):
+                        log.info("worker.thread: Start update data")
+                        self.update_data()
+                    else:
+                        log.error("worker.thread: Failed to build sensor cache data")
 
             except Exception as err:
                 log.error(err)
 
-            log.info("Worker::thread: Disconnect from end points")
+            log.info("worker.thread: Disconnect from end points")
 
             # Disconnect from influx db
-            if isinstance(self.influxdb, InfluxDB) == True:
-                self.influxdb.close()
-                self.influxdb = None
+            if isinstance(self._influxdb, InfluxDB):
+                self._influxdb.close()
+                self._influxdb = None
             
             # Disconnect from inverter
-            if isinstance(self.inverter, Inverter) == True:
-                self.inverter.close()
-                self.inverter = None
+            if isinstance(self._inverter, Inverter):
+                self._inverter.close()
+                self._inverter = None
             
             # If something went wrong, wait some time and
             # retry again. Only worker isn't stopped.
-            if self.run == True:
-                time.sleep(self.config.worker.err_pause)
-
+            if self._run:
+                time.sleep(self._config.worker.err_pause)
 
     # // _run() -> None
 
 
     """
     Inside this method all data are updated from the inverter
-    and stored into influx db. If something went wrong, this method
-    returns False.
+    and stored into influx db.
     """
-    def _update_data(self) -> bool:
+    def update_data(self) -> None:
     
         count = 0
+        updates = 0
         last = time.time()
 
-        while self.run:
-            if self.influxdb.update(self.inverter) == False:
-                return False
+        while self._run:
+            res = self._influxdb.update(self._inverter)
+            if res.is_error():
+                log.error(res.err())
+                return
             
             # do some statistics
             count = count + 1
+            updates = updates + res.result().get()
             cur = time.time()
             diff = cur - last
             if diff >= 600: # every 10min
-                log.info(f"ipvgather.statistics: Avg Sec/Update: {((diff) / count)}s / {count} updates in {(diff)}s")
+                log.info(f"ipvgather.statistics: Avg Sec/Batches: {round(diff / count, 4)}s")
+                log.info(f"ipvgather.statistics:      Runtime: {round(diff, 4)}s")
+                log.info(f"ipvgather.statistics:      Batches: {count}")
+                log.info(f"ipvgather.statistics:      Updates: {updates}")
                 last = cur
                 count = 0
+                updates = 0
 
             # sleep for some time
-            time.sleep(self.config.worker.intervall)
-        return True
-    # // _update_data(self) -> bool
+            time.sleep(self._config.worker.intervall)
+        # // while self._run:
+
+    # // update_data(self) -> None
 
 
     """
     """
     def join(self) -> None:
-        self.thread.join()
+        self._thread.join()
 
 
     """
     """
     def start(self) -> None:
-        self.thread.start()
+        self._thread.start()
 
 
     """
     """
     def stop(self) -> None:
-        self.run = False
+        self._run = False

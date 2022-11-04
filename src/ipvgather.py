@@ -13,17 +13,24 @@ worker = None
 """
 Register signal handler
 """
-def signal_handler_interrupt(signum, frame) -> None:
+def stop_by_signal() -> None:
     global worker
     if isinstance(worker, Worker) == True:
         log.info("Signal Handler: Stop worker")
         worker.stop()
     else:
         log.debug("Signal Handler: No worker defined")
-# // signal_handler_interrupt(signum, frame) -> None
+
+
+def signal_handler_interrupt(signum, frame) -> None:
+    stop_by_signal()
+
+def signal_handler_terminate(signum, frame) -> None:
+    stop_by_signal()
 
 # register signal handler
 signal.signal(signal.SIGINT, signal_handler_interrupt)
+signal.signal(signal.SIGTERM, signal_handler_terminate)
 
 
 """

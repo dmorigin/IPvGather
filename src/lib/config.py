@@ -15,6 +15,8 @@ class ConfigInfluxDB:
     token: str
     organisation: str
     bucket: str
+    force_write: 20 # force write of data after 20s
+    use_cache: False
 
     def __init__(self, items: Dict) -> None:
         for key, value in items.items():
@@ -108,7 +110,7 @@ class ConfigLogging:
 """
 class ConfigWorker:
     def __init__(self, items: Dict) -> None:
-        self.intervall = 1 # process data every 1s
+        self.intervall = 2 # process data every 2s
         self.err_pause = 10 # wait 10s after an error
 
         for key, value in items.items():
