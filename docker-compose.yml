@@ -1,0 +1,15 @@
+services:
+  ipvgather:
+    image: python:3.11-bullseye
+    container_name: ipvgather
+    configs:
+      - source: ipv_config
+        target: /ipvgather.json
+    volumes:
+      - data:/data:rw
+    entrypoint:
+      - python
+      - /ipvgather/test.py
+configs:
+  ipv_config:
+    external: true

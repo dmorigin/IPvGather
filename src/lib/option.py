@@ -5,8 +5,14 @@ class Option:
 
     """
     """
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self._value = value
+
+
+    """
+    """
+    def __del__(self) -> None:
+        self._value = None
 
 
     """
@@ -25,6 +31,13 @@ class Option:
     """
     def get(self):
         return self._value
+
+    """
+    """
+    def once(self):
+        value = self._value
+        self._value = None
+        return value
 
 # // class Option
 

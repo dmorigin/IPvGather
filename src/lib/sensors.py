@@ -232,15 +232,15 @@ class Sensor:
         - goodwe.SensorKind
         - goodwe.Sensor
     """
-    def __eq__(self, __o: object) -> bool:
-        if isinstance(__o, str):
-            return self.id == __o
-        elif isinstance(__o, Sensor):
-            return self.id == __o.id
-        elif isinstance(__o, SensorKind):
-            return self.kind == __o
-        elif isinstance(__o, GoodWeSensor):
-            return self.id == __o.id_
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, str):
+            return self.id == other
+        elif isinstance(other, Sensor):
+            return self.id == other.id
+        elif isinstance(other, SensorKind):
+            return self.kind == other
+        elif isinstance(other, GoodWeSensor):
+            return self.id == other.id_
         return False
 
 

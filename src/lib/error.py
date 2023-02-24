@@ -25,6 +25,10 @@ class Result(object):
         self._err = err
         self._result = Option(res)
 
+    def __del__(self) -> None:
+        self._err = None
+        self._result = None
+
     def __str__(self) -> str:
         return str(self._err) if self.is_error() else ""
 

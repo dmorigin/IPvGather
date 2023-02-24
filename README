@@ -18,7 +18,7 @@ into a InfluxDB2 database.
 
     -c [file]   Path and filename of the configuration file
     --check     Use this additionally to check the your configuration file
-    --disvocer  With this flag, ipvgather will search for an GoodWe inverter
+    --discover  With this flag, ipvgather will search for an GoodWe inverter
 
 # Configuration file
 

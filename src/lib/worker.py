@@ -61,12 +61,13 @@ class Worker:
             # Disconnect from influx db
             if isinstance(self._influxdb, InfluxDB):
                 self._influxdb.close()
-                self._influxdb = None
             
             # Disconnect from inverter
             if isinstance(self._inverter, Inverter):
                 self._inverter.close()
-                self._inverter = None
+            
+            self._influxdb = None
+            self._inverter = None
             
             # If something went wrong, wait some time and
             # retry again. Only worker isn't stopped.

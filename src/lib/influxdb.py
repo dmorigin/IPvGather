@@ -49,14 +49,21 @@ class SensorCacheData:
         self.value = value
         self.time = time.time()
 
+    def __del__(self):
+        self.value = None
+
 
 class SensorCache:
     def __init__(self, sensor: Sensor) -> None:
         self._sensor = sensor
         self._cache = none()
 
-    def __eq__(self, __o: object) -> bool:
-        return self._sensor == __o
+    def __del__(self):
+        self._sensor = None
+        self._cache = None
+
+    def __eq__(self, other: object) -> bool:
+        return self._sensor == other
 
     def set_cache(self, value: Any) -> None:
         self._cache = some(SensorCacheData(value))
@@ -75,6 +82,13 @@ class InfluxDB:
         self._client = None
         self._writer = None
         self._cache = List[SensorCache]
+
+    def __del__(self) -> None:
+        self._config = None
+        self._client = None
+        self._writer = None
+        self._cache.clear()
+        self._cache = None
 
 
     """
@@ -125,7 +139,7 @@ class InfluxDB:
         # Aquire device info
         device_info = inverter.device_info()
         if device_info.some():
-            device_info = device_info.get()
+            device_info = device_info.once()
         else:
             log.warning("influxdb.update: No device information found")
 
@@ -135,7 +149,7 @@ class InfluxDB:
             # store data in database
             res = self.store(
                 device_info,
-                response.get()
+                response.once()
             )
 
             if res.is_ok():
@@ -184,14 +198,13 @@ class InfluxDB:
 
         # Write all sensor data
         if len(collection) > 0:
-            written = self._writer.write(
+            self._writer.write(
                 bucket = self._config.bucket,
                 org = self._config.organisation,
                 record = collection
             )
             return result(len(collection))
 
-            print(written)
         return result(0)
 
     # // store(self, device_info: DeviceInfo, response: Dict[str, Any]) -> Result

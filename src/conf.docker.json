@@ -1,0 +1,30 @@
+{
+	"influxdb": {
+		"url": "http://localhost:8086/",
+		"token": "n5khNcIyWcExPZHxE2cd-F8qd4_jBxRSraBCLuF2ZVmWTFvwrOZTRdEmWj-pnUKvlKGU5K-EJXUOcCLdWbwQsw==",
+		"organisation": "Private Test",
+		"bucket": "inverter",
+		"force_write": 10,
+		"use_cache": true
+	},
+	"inverter": {
+		"ip": "192.168.1.254",
+		"family": "ET",
+		"comm_addr": "",
+		"timeout": 2,
+		"retries": 3,
+		"sensors": {
+			"add": [],
+			"ignore": []
+		}
+	},
+	"logging": {
+		"syslog": false,
+		"file": "/data/ipvgather.log",
+		"level": 4
+	},
+	"worker": {
+		"intervall": 2,
+		"err_pause": 10
+	}
+}
