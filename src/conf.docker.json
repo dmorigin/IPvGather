@@ -5,7 +5,7 @@
 		"organisation": "Private Test",
 		"bucket": "inverter",
 		"force_write": 10,
-		"use_cache": true
+		"use_cache": false
 	},
 	"inverter": {
 		"ip": "192.168.1.254",

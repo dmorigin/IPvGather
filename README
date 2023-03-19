@@ -7,8 +7,8 @@ into a InfluxDB2 database.
 
     Install using pip
 
-    pip install goodwe
-    pip install influxdb-client
+    pip install goodwe=0.2.20
+    pip install influxdb-client=1.36.1
 
 # Run this script
 
